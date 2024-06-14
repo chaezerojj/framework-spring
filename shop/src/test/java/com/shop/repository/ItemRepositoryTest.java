@@ -43,6 +43,8 @@ class ItemRepositoryTest {
 		// JpaRepository에서 지원하는 메소드
 		// - save() - 엔티티 저장 및 수정
  	}
+	
+	
 	@Test
 	public void getItemsTest() {
 		List<Item> itemList = itemRepository.findAll();
