@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>layout1</title>
+</head>
+<body>
+	<!-- /templates/layouts/layout1.html -->
+	<div th:replace="fragments/header::header"></div>
+	
+	<!-- layout에서 변경되는 영역을 fragment로 설정 -->
+	<div layout:fragment="content"></div>
+	
+	<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>

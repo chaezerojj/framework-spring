@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- templates/fragments/footer.html -->
+<!-- Thymeleaf 페이지 레이아웃 -->
+<!-- 
+	보통 웹사이트 제작 시 공통적인 페이지 구성요소:  header, footer, menu 등
+	-> html/css로 제작 시 해당 구성요소 영역을 변경해야 할 때 포함하는 모든 페이지 수정해야 함
+	-> Thymeleaf 페이지 레이아웃 기능 사용하면 공통요소 관리 쉽게 사용 가능
+-->
+<!-- th:fragment -->
+<!-- 다른 페이지에 포함할 영역을 th:fragment로 선언 -->
+<div th:fragment="footer">
+	Footer 영역 입니다.
+</div>
+</html>

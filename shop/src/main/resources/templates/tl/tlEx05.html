@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>tlEx05</title>
+</head>
+<body>
+	<!-- tl/tlEx05.html -->
+	<h1>Thymeleaf 링크 처리 예제</h1>
+	<!-- 
+	* th:href
+	- 타임리프에서는 링크 처리 문법
+	- ? 링크의 종류
+	- - 외부 링크: Absolute URL
+	- - 내부 링크: Context-relative URL
+	-->
+	<div>
+		<h3>* 내부 링크로 이동</h3>
+		<!-- 링크 주소: root주소를 시작으로 컨트롤러에 명시한 요청 주소를 상대 주소로 입력 -->
+		<!-- 주소 예시: localhost:8080/컨트롤러요청명(RequestMapping)/컨트롤러요청명(GetMapping) -->
+		<!-- localhost:8080/thymeleaf/ -->
+		<a th:href="@{/thymeleaf/ex01}" target="_blank">예제 1 페이지 이동</a>
+		<a th:href="@{/thymeleaf/ex02}" target="_blank">예제 2 페이지 이동</a>
+		<a th:href="@{/thymeleaf/ex03}" target="_blank">예제 3 페이지 이동</a> 
+		<a th:href="@{/thymeleaf/ex04}" target="_blank">예제 4 페이지 이동</a>
+	</div>
+
+	<br />
+
+	<div>
+		<h3>* 외부 링크로 이동</h3>
+		<a th:href="@{https://www.thymeleaf.org/}" target="_blank">
+			ThymeLeaf 공식 홈페이지 </a>
+	</div>
+
+	<br />
+
+	<form method="get" action="/thymeleaf/putdata">
+		<input type="text" name="data">
+		<input type="submit">
+	</form>
+	<div>
+		당신이 입력한 값은 "<span th:text="${data}"></span>" 입니다.
+	</div>
+
+	<!-- 해당 링크로 이동할 시 파라미터 값 전달해야 하는 경우도 처리 가능 -->
+	<div>
+		<a th:href="@{/thymeleaf/ex06(param1='파라미터 데이터1', param2='파라미터 데이터2')}">
+			thymeleaf 파라미터 전달
+		</a>
+	</div>
+
+
+</body>
+</html>
