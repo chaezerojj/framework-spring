@@ -81,5 +81,11 @@ public class ThymeleafExController {
 		System.out.println(param1 + " " + param2);
 		return "tl/tlEx05";
 	}
+	
+	@GetMapping(value = "/ex07")
+	public String thymeleafExample07() {
+		return "tlEx07";
+	}
+	
 
 }
