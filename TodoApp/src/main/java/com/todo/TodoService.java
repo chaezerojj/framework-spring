@@ -29,4 +29,9 @@ public class TodoService {
 	public void deleteTodo(Integer id) {
 		tRepo.deleteById(id);
 	}
+
+	// id값을 이용하여 1개의 todo를 가져오기
+	public TodoEntity getTodo(Integer id) {
+		return tRepo.findById(id).get();
+	}
 }

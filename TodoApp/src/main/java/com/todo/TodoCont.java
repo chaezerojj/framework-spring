@@ -40,7 +40,9 @@ public class TodoCont {
 	@PostMapping("/put")
 //	public String putTodo(@RequestParam TodoEntity tEntity) {
 	public String putTodo(TodoEntity tEntity) {
-		tEntity.setCompleted(false);
+		if(tEntity.getCompleted() == null) {
+			tEntity.setCompleted(false);
+		}
 		tService.putTodo(tEntity);
 		return "redirect:/";
 	}
@@ -48,6 +50,20 @@ public class TodoCont {
 	@GetMapping("/delete/{id}")
 	public String deleteTodo(@PathVariable Integer id) {
 		tService.deleteTodo(id);
+		return "redirect:/";
+	}
+	@GetMapping("/update/{id}")
+	public String updateTodo(@PathVariable Integer id, Model model) {
+		// id값 이용하여 1개의 todo값 가져오기
+		TodoEntity tEntity = tService.getTodo(id);
+		model.addAttribute("todo", tEntity);
+		return "update-todo";
+	}
+	
+	@RequestMapping("/updateCompleted")
+	public String updateCompleted(TodoEntity tEntity) {
+		tEntity.setCompleted(!tEntity.getCompleted());
+		tService.putTodo(tEntity);
 		return "redirect:/";
 	}
 }

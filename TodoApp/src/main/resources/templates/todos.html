@@ -25,7 +25,7 @@ body {
 						class="row justify-content-center align-items-center mb-4 pb-2 g-3">
 						<div class="col-9">
 							<div class="form-outline">
-								<input id="put-todo" name="content" class="form-control"
+								<input id="put-todo" type="text" name="content" class="form-control"
 									placeholder="Add Todos..." required>
 							</div>
 						</div>
@@ -38,19 +38,23 @@ body {
 							<tr>
 								<th>No.</th>
 								<th>Todo item</th>
-								<th>Status</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="todo:${todos}">
 								<td th:text="${todo.id}"></td>
-								<td th:text="${todo.content}"></td>
-								<td th:text="${todo.completed}"></td>
+								<td class="text-decoration-line-through" th:text="${todo.content}" th:if="${todo.completed}"></td>
+								<td th:text="${todo.content}" th:unless="${todo.completed}"></td>
 								<td>
-									<button class="btn btn-warning" data-bs-toggle="modal"
-										th:attr="data-target=${'#editModal'+todo.id}">✏</button>
-									<button class="btn btn-success">✔</button>
+									<a 
+									th:href="@{/updateCompleted(id=${todo.id},content=${todo.content},completed=${todo.completed})}">
+										<button th:if="${todo.completed}" class="btn btn-success">Not Done</button>
+										<button th:unless="${todo.completed}" class="btn btn-success">✔</button>
+									</a>
+									<a th:href="@{/update/{id}(id=${todo.id})}">
+										<button class="btn btn-warning">✏</button>
+									</a>
 									<a th:href="@{/delete/{id}(id=${todo.id})}">
 										<button class="btn btn-danger">❌</button>
 									</a>
@@ -62,26 +66,7 @@ body {
 			</div>
 		</div>
 	</section>
-	<!-- Modal -->
-	<div class="modal fade" id="editModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">
-					Update Todo</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">...</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
